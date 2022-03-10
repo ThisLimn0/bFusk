@@ -16,7 +16,7 @@ IF NOT "%ErrorLevel%"=="0" (
 )
 ECHO.Please provide an URL to fusker. Example: http://abc.def.gh/img/[1-400].jpg
 SET /P "FuskURL=> "
-
+SET "LinkCount=0"
 FOR /F "usebackq tokens=1-3 delims=[+]" %%A in ('!FuskURL!') DO (
 	SET "FuskerURLSplitA=%%A"
 	SET "FuskerRange=%%B"
@@ -134,7 +134,7 @@ IF "!DownloadPath!"=="!FuskURL!" (
 )
 SET "CountA=0"
 SET "Errors="
-FOR /L %%A in (%FuskerMIN%,1,%FuskerMAXNew%) DO (
+FOR /L %%A in (%FuskerMINNew%,1,%FuskerMAXNew%) DO (
 	SET /A CountA+=1
 	TITLE bFusk - Download... [%%A/!FuskerMAXNew!] !Errors! !ErrorCount!
 	SET "TempBuiltURL=!FuskerURLSplitA!%%A!FuskerURLSplitB!"
